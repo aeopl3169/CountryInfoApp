@@ -31,6 +31,8 @@ fun CountryCardWithConstraintLayout(countryInfo: CountryInfo) {
         val imageRegId = countryInfo.flagId
         val imagePainter: Painter = painterResource(id = imageRegId)
 
+        val topGuideLine = createGuidelineFromTop(0.1f)
+        val startGuideLine = createGuidelineFromStart(2.dp)
 
         Image(
             painter = imagePainter,
@@ -41,7 +43,8 @@ fun CountryCardWithConstraintLayout(countryInfo: CountryInfo) {
                 .height(70.dp)
                 .padding(2.dp)
                 .constrainAs(flag) {
-                    top.linkTo(parent.top)
+                    top.linkTo(topGuideLine)
+                    start.linkTo(startGuideLine)
                 }
         )
 
@@ -51,7 +54,7 @@ fun CountryCardWithConstraintLayout(countryInfo: CountryInfo) {
                 .padding(2.dp)
                 .constrainAs(countryName) {
                     top.linkTo(flag.bottom)
-                    start.linkTo(parent.start)
+                    start.linkTo(startGuideLine)
                     end.linkTo(flag.end)
                 },
             fontSize = 20.sp,
@@ -65,7 +68,7 @@ fun CountryCardWithConstraintLayout(countryInfo: CountryInfo) {
                 .padding(2.dp)
                 .constrainAs(capital) {
                     top.linkTo(countryName.bottom)
-                    start.linkTo(parent.start)
+                    start.linkTo(startGuideLine)
                     end.linkTo(flag.end)
                 },
             fontSize = 15.sp,
